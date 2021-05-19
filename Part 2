@@ -1,0 +1,75 @@
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+//CODING PART 2
+//1)
+for(const [p,m] of game.scored.entries())
+console.log(`Goal ${p + 1}: ${m}`);
+//2)
+let average = 0;
+let values = Object.values(game.odds)// when doing this can use .length
+for(const j of values){
+  average += j;
+}
+average /= values.length;
+console.log(average);
+
+//3)
+//first way
+// const props = Object.entries(game.odds);
+// console.log(props);
+// let sentence = `Odd of `;
+// for(const [z,[y,x]] of props.entries()){
+//   let pg= y === 'x' ? `draw: ${x}` : `victory ${game[y]}: ${x}`;
+//   console.log(sentence + pg);
+// }
+//second way (better)
+for(const [a,b] of Object.entries(game.odds)){
+  const teamStr = a === 'x' ? 'draw' : `victory ${game[a]}`
+  console.log(`Odd of ${teamStr} ${b}`)
+}
+//4)
+const scorers = {};
+for(const loop of game.scored){
+ // console.log(loop); // name
+  scorers[loop] ? scorers[loop]++ : scorers[loop]=1
+  //console.log(scorers[loop]); //number
+}
